@@ -76,8 +76,8 @@ func New(str string) (*Matrix, error) {
 }
 
 /*Rows gets the matrix represented in rows.*/
-func (m Matrix) Rows() [][]int {
-	rows := make([][]int, m.rows)
+func (m Matrix) Rows() [][]int {								
+	rows := make([][]int, m.rows)								
 	for r := 0; r < m.rows; r++ {
 		rows[r] = make([]int, m.cols)
 		for c := 0; c < m.cols; c++ {
