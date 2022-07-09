@@ -1,10 +1,10 @@
 package coverage
 
 import (
-	"fmt"
 	"os"
 	"testing"
 	"time"
+	"github.com/stretchr/testify/assert"
 )
 
 // DO NOT EDIT THIS FUNCTION
@@ -72,6 +72,7 @@ func TestSwap (t *testing.T) {
 }
 
 func TestMatrix (t *testing.T) {
+	as := assert.New(t)
 	s1 := `1 2 3 
 		   4 5 3`
 	s2 := `1 2 3 
@@ -81,11 +82,13 @@ func TestMatrix (t *testing.T) {
 	s := []string{s1, s2, s3}
 
 	for _, v := range s {
-		_, m := New(v)
-		if m != nil {
-			t.Error(m)
-		}else{
-			fmt.Print("ok")
+		m, err := New(v)
+		if err != nil{
+			as.Error(err)
+			as.Nil(m)
+		} else{
+			as.NoError(err)
+			as.NotNil(m)
 		}
 	}
 
