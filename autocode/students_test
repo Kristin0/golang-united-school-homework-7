@@ -1,9 +1,10 @@
 package coverage
 
 import (
+	"fmt"
 	"os"
-	"time"
 	"testing"
+	"time"
 )
 
 // DO NOT EDIT THIS FUNCTION
@@ -68,4 +69,24 @@ func TestSwap (t *testing.T) {
 	if  want != got {
 		t.Errorf("got %s want %s", got, want)
 	}
+}
+
+func TestMatrix (t *testing.T) {
+	s1 := `1 2 3 
+		   4 5 3`
+	s2 := `1 2 3 
+		   4 5`
+	s3 := `1 2 3 
+		   A 3 4`
+	s := []string{s1, s2, s3}
+
+	for _, v := range s {
+		_, m := New(v)
+		if m != nil {
+			t.Error(m)
+		}else{
+			fmt.Print("ok")
+		}
+	}
+
 }
